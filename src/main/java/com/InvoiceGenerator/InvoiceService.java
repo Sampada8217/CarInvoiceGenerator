@@ -13,6 +13,17 @@ public class InvoiceService {
                 return MIN_FARE;
             return totalFare;
         }
-    
+
+    public InvoiceSummary calculateFare(Ride[] rides) {
+        double totalFare = 0;
+        for (Ride ride : rides) {
+
+            totalFare += calculateFare(ride.distance, ride.time);
+
+        }
+        return new InvoiceSummary(rides.length,totalFare);
     }
+
+
+}
 
