@@ -1,9 +1,16 @@
 package com.InvoiceGenerator;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class InvoiceServiceTest {
+
+    InvoiceService invoiceService;
+    @Before
+    public void setUp() throws Exception {
+        invoiceService=new InvoiceService();
+    }
     @Test
     public void givenDistanceAndTime_shouldReturnTotalFare() {
         InvoiceService invoiceService = new InvoiceService();
@@ -30,6 +37,20 @@ public class InvoiceServiceTest {
         };
         InvoiceSummary summary=invoiceGenerator.calculateFare(rides);
         InvoiceSummary invoiceSummary = new InvoiceSummary(2, 30.0);
+        Assert.assertEquals(invoiceSummary,summary);
+    }
+    @Test
+    public void givenUserIdAndWrite_shouldReturnInvoiceSummary() {
+
+        String userId="abc.com";
+        Ride[] rides={
+                new Ride(2.0,5),
+                new Ride(0.1,1),
+
+        };
+        invoiceService.addRide(userId,rides);
+        InvoiceSummary summary=invoiceService.getInvoiceSummary(userId);
+        InvoiceSummary invoiceSummary=new InvoiceSummary(2,30.0);
         Assert.assertEquals(invoiceSummary,summary);
     }
 }

@@ -21,5 +21,4 @@ public class InvoiceSummary {
                 Double.compare(summary.averageFare, averageFare) == 0;
     }
 
-
 }
