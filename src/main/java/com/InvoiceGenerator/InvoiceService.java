@@ -6,16 +6,17 @@ public class InvoiceService {
     private static final int COST_PER_TIME =1 ;
     private static final double MIN_FARE =5;
 
-    RideRepository rideRepository=null;
+   public RideRepository rideRepository=null;
     public InvoiceService() {
-        this.rideRepository = new RideRepository();
-    }
+      this.rideRepository = new RideRepository();
+     }
     public enum RideInformation{
            NORMAL ,PREMIUM ;
     }
-     RideInformation rideInformation;
+     public RideInformation rideInformation;
 
     public InvoiceService(RideInformation premium){
+        this.rideRepository=new RideRepository();
         this.rideInformation=premium;
 
     }
@@ -48,7 +49,7 @@ public class InvoiceService {
         return this.calculateFare(rideRepository.getRides(userId));
     }
 
-    public InvoiceSummary getInvoiceSummary(String userId, RideInformation premium) {
+    public InvoiceSummary getInvoiceSummary1(String userId, RideInformation premium) {
         this.rideInformation = premium;
         return this.calculateFare(rideRepository.getRides(userId));
     }
